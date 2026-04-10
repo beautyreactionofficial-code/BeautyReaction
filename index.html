@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Reaction – Spotless Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #e8728a;
+    --pink-light: #f4a0b0;
+    --pink-pale: #fde8ed;
+    --rose: #c94f6a;
+    --cream: #fff8f9;
+    --dark: #2d1a20;
+    --text: #4a2535;
+    --text-muted: #9e7080;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,114,138,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .petal {
+    position: fixed;
+    border-radius: 50% 0 50% 0;
+    opacity: 0.18;
+    animation: floatPetal linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .petal:nth-child(1){width:18px;height:18px;background:var(--pink);top:15%;left:8%;animation-duration:8s;}
+  .petal:nth-child(2){width:12px;height:12px;background:var(--pink-light);top:35%;left:15%;animation-duration:10s;animation-delay:2s;}
+  .petal:nth-child(3){width:22px;height:22px;background:var(--rose);top:60%;left:5%;animation-duration:7s;animation-delay:1s;}
+  .petal:nth-child(4){width:14px;height:14px;background:var(--pink);top:80%;left:20%;animation-duration:9s;animation-delay:3s;}
+  .petal:nth-child(5){width:10px;height:10px;background:var(--pink-light);top:20%;right:12%;animation-duration:11s;animation-delay:0.5s;}
+
+  @keyframes floatPetal {
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-30px) rotate(180deg);}
+    100%{transform:translateY(0) rotate(360deg);}
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(255,248,249,0.93);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(232,114,138,0.15);
+    transition: all 0.3s;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 0.8rem; }
+
+  .nav-logo img {
+    height: 46px; width: 46px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid var(--pink-light);
+    padding: 2px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--rose);
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--pink);
+    transition: width 0.3s;
+    border-radius: 2px;
+  }
+
+  .nav-links a:hover { color: var(--pink); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--pink);
+    border: none;
+    color: white;
+    padding: 0.55rem 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    border-radius: 50px;
+  }
+
+  .nav-cta:hover { background: var(--rose); box-shadow: 0 4px 18px rgba(232,114,138,0.4); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff0f4 0%, #fff8f9 50%, #fce8f0 100%);
+    z-index: 1;
+  }
+
+  .hero-content { z-index: 2; position: relative; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    background: rgba(232,114,138,0.1);
+    border: 1px solid rgba(232,114,138,0.3);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    font-weight: 500;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-title em { font-style: italic; color: var(--pink); }
+
+  /* TAGLINE */
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--rose);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.7s 0.15s ease both;
+    opacity: 0.85;
+  }
+
+  .hero-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-pink {
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    color: white;
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(232,114,138,0.35);
+  }
+
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,114,138,0.5); }
+
+  .btn-outline-pink {
+    background: transparent;
+    color: var(--pink);
+    border: 1.5px solid var(--pink-light);
+    padding: 0.9rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50px;
+  }
+
+  .btn-outline-pink:hover { background: var(--pink-pale); border-color: var(--pink); }
+
+  .hero-visual {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: fadeIn 1s 0.4s ease both;
+  }
+
+  .hero-img-wrap {
+    position: relative;
+    width: 360px;
+    height: 460px;
+  }
+
+  .hero-blob {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(ellipse, rgba(232,114,138,0.15) 0%, transparent 70%);
+    border-radius: 60% 40% 60% 40%;
+    animation: blobPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes blobPulse {
+    0%,100%{transform:scale(1) rotate(0deg);}
+    50%{transform:scale(1.05) rotate(5deg);}
+  }
+
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30% 70% 60% 40% / 40% 50% 60% 50%;
+    animation: frameMorph 6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes frameMorph {
+    0%,100%{border-radius:30% 70% 60% 40% / 40% 50% 60% 50%;}
+    50%{border-radius:60% 40% 30% 70% / 50% 60% 40% 50%;}
+  }
+
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--pink-pale), #fce8f0);
+    border-radius: 30% 70% 60% 40% / 40% 50% 60% 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--pink);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    animation: frameMorph 6s ease-in-out infinite;
+  }
+
+  .hero-img-placeholder .big-icon { font-size: 4rem; }
+
+  .hero-float-1, .hero-float-2 {
+    position: absolute;
+    background: white;
+    border-radius: 16px;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 8px 30px rgba(232,114,138,0.15);
+    z-index: 3;
+  }
+
+  .hero-float-1 { bottom: 30px; left: -30px; }
+  .hero-float-2 { top: 30px; right: -20px; }
+
+  .hf-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--pink); line-height: 1; }
+  .hf-label { font-size: 0.55rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    padding: 1.2rem 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    position: relative; z-index: 1;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 2rem;
+    animation: marquee 22s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  section { padding: 7rem 4rem; position: relative; z-index: 1; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    color: var(--dark);
+  }
+
+  .section-title em { font-style: italic; color: var(--pink); }
+
+  /* PRODUCTS */
+  .products { background: white; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .product-card {
+    background: var(--cream);
+    border: 1px solid rgba(232,114,138,0.12);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--pink-light), var(--pink), var(--rose));
+    border-radius: 24px 24px 0 0;
+  }
+
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(232,114,138,0.15); border-color: rgba(232,114,138,0.3); }
+
+  .product-img-wrap {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff0f4, #fce8f0);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; border-radius: 16px; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+  .product-img-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.8rem; color: var(--pink-light); font-size: 0.6rem; letter-spacing: 0.15em;
+    text-transform: uppercase; width: 100%; height: 100%;
+  }
+
+  .product-img-placeholder .big-icon { font-size: 4rem; }
+
+  .product-tag {
+    font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--pink); background: rgba(232,114,138,0.1);
+    display: inline-block; padding: 0.25rem 0.8rem; border-radius: 50px; margin-bottom: 0.8rem;
+  }
+
+  .product-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500; margin-bottom: 0.8rem; color: var(--dark); }
+  .product-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 2rem; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+
+  .product-price { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--pink); }
+  .product-price sub { font-size: 0.85rem; font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--text-muted); vertical-align: middle; }
+
+  .btn-buy {
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    color: white; border: none; padding: 0.65rem 1.6rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+    text-decoration: none; display: inline-block; border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(232,114,138,0.3);
+  }
+
+  .btn-buy:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(232,114,138,0.5); }
+
+  /* ===== BEFORE / AFTER ===== */
+  .before-after { background: linear-gradient(135deg, #fff0f4 0%, var(--cream) 100%); }
+
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  /* Main showcase — spans full width */
+  .ba-showcase {
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(232,114,138,0.12);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    min-height: 400px;
+  }
+
+  .ba-side {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ba-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+
+  .ba-showcase:hover .ba-side img { transform: scale(1.04); }
+
+  .ba-side-label {
+    position: absolute;
+    top: 1.2rem; left: 1.2rem;
+    background: white;
+    border-radius: 50px;
+    padding: 0.35rem 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+
+  .ba-side.before-side .ba-side-label { color: #888; }
+  .ba-side.after-side .ba-side-label { color: var(--rose); }
+
+  .ba-img-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .before-side .ba-img-placeholder { background: #f5f5f5; color: #aaa; }
+  .after-side .ba-img-placeholder { background: linear-gradient(135deg, #fff0f4, #fce8f0); color: var(--pink); }
+
+  .ba-img-placeholder .ph-icon { font-size: 3.5rem; }
+
+  .ba-center-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    background: white;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ba-center-divider::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(232,114,138,0.3), transparent);
+  }
+
+  .ba-arrow-circle {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(232,114,138,0.4);
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+
+  .ba-vs {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    font-style: italic;
+    color: var(--pink);
+    position: relative;
+    z-index: 3;
+  }
+
+  /* Small result cards below */
+  .ba-stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(232,114,138,0.08);
+    border: 1px solid rgba(232,114,138,0.1);
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .ba-stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(232,114,138,0.15); border-color: rgba(232,114,138,0.3); }
+
+  .ba-stat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+
+  .ba-stat-week {
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .ba-stat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .ba-stat-result { font-size: 0.65rem; color: var(--text-muted); }
+
+  /* CONSULTATION */
+  .consultation { background: white; }
+
+  .consult-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+  .consult-features { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+
+  .consult-feature {
+    display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem;
+    border-radius: 16px; background: var(--cream); border: 1px solid rgba(232,114,138,0.1); transition: all 0.3s;
+  }
+
+  .consult-feature:hover { border-color: rgba(232,114,138,0.35); background: #fff0f4; transform: translateX(4px); }
+
+  .cf-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .cf-text h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--dark); margin-bottom: 0.3rem; }
+  .cf-text p { font-size: 0.68rem; color: var(--text-muted); line-height: 1.8; }
+
+  .consult-form {
+    background: linear-gradient(135deg, #fff0f4, #fce8f0);
+    border: 1px solid rgba(232,114,138,0.2);
+    border-radius: 28px;
+    padding: 3rem;
+  }
+
+  .form-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); margin-bottom: 0.4rem; }
+  .form-subtitle { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .form-group { margin-bottom: 1.1rem; }
+
+  .form-group label {
+    display: block; font-size: 0.58rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pink); margin-bottom: 0.45rem; font-weight: 500;
+  }
+
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: white; border: 1.5px solid rgba(232,114,138,0.2);
+    color: var(--text); padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+    border-radius: 12px; -webkit-appearance: none;
+  }
+
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #ccc; }
+  .form-group select option { background: white; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--pink-light); box-shadow: 0 0 0 3px rgba(232,114,138,0.1);
+  }
+
+  .form-group textarea { height: 85px; resize: none; }
+
+  .consult-btn {
+    width: 100%; background: linear-gradient(135deg, var(--pink), var(--rose));
+    color: white; border: none; padding: 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s; margin-top: 0.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    border-radius: 12px; box-shadow: 0 6px 20px rgba(232,114,138,0.35);
+  }
+
+  .consult-btn:hover { box-shadow: 0 10px 30px rgba(232,114,138,0.5); transform: translateY(-1px); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: linear-gradient(135deg, #fff5f7 0%, white 100%); }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+
+  .testi-card {
+    background: white; border: 1px solid rgba(232,114,138,0.1);
+    border-radius: 22px; padding: 2rem; transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(232,114,138,0.06);
+  }
+
+  .testi-card:hover { border-color: rgba(232,114,138,0.3); box-shadow: 0 10px 35px rgba(232,114,138,0.12); transform: translateY(-3px); }
+
+  .testi-quote { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--pink-light); line-height: 0.8; margin-bottom: 1rem; display: block; }
+  .testi-text { font-size: 0.76rem; color: var(--text-muted); line-height: 1.9; font-style: italic; margin-bottom: 1.5rem; }
+  .testi-stars { color: var(--pink); font-size: 0.8rem; margin-bottom: 1.2rem; }
+  .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-light), var(--rose));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1rem; color: white; font-weight: 500; flex-shrink: 0;
+  }
+
+  .testi-name { font-size: 0.72rem; font-weight: 500; color: var(--dark); }
+  .testi-location { font-size: 0.58rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+  /* INSTAGRAM */
+  .instagram { background: white; }
+
+  .insta-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 3rem; }
+
+  .insta-cell {
+    aspect-ratio: 1; background: linear-gradient(135deg, #fff0f4, #fce8f0);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s;
+  }
+
+  .insta-cell::after { content: '🌸'; font-size: 1.6rem; opacity: 0.25; }
+  .insta-cell:hover { transform: scale(1.03); }
+
+  .insta-overlay {
+    position: absolute; inset: 0; background: rgba(232,114,138,0.88);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s; font-size: 0.58rem; letter-spacing: 0.12em;
+    color: white; text-transform: uppercase; border-radius: 12px; font-weight: 500;
+  }
+
+  .insta-cell:hover .insta-overlay { opacity: 1; }
+
+  .insta-handle { text-align: center; margin-top: 2.5rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--pink); }
+  .insta-handle a { color: inherit; text-decoration: none; }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 5rem 4rem 3rem; }
+
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+
+  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--pink-light); margin-bottom: 0.3rem; }
+  .footer-brand-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.82rem; color: rgba(232,114,138,0.6); margin-bottom: 1.2rem; }
+  .footer-desc { font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.9; max-width: 270px; }
+
+  .footer-col h4 { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pink-light); margin-bottom: 1.5rem; }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.7rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--pink-light); }
+
+  .contact-item { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.9rem; font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+  .contact-item a { color: inherit; text-decoration: none; transition: color 0.3s; }
+  .contact-item a:hover { color: var(--pink-light); }
+
+  .footer-bottom { border-top: 1px solid rgba(232,114,138,0.12); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.6rem; color: rgba(255,255,255,0.2); }
+
+  .social-links { display: flex; gap: 0.8rem; }
+
+  .social-link {
+    width: 36px; height: 36px; border: 1px solid rgba(232,114,138,0.2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.85rem; transition: all 0.3s;
+  }
+
+  .social-link:hover { border-color: var(--pink); background: rgba(232,114,138,0.1); color: var(--pink-light); }
+
+  /* WA FLOAT */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
+    width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.3s; animation: waPulse 2.5s infinite;
+  }
+
+  .wa-float:hover { transform: scale(1.1); }
+
+  @keyframes waPulse {
+    0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}
+    50%{box-shadow:0 4px 35px rgba(37,211,102,0.65);}
+  }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+  @keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    section{padding:5rem 1.5rem;}
+    .hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:3rem;}
+    .hero-visual{order:-1;}
+    .hero-img-wrap{width:240px;height:300px;}
+    .hero-float-1{left:-10px;}
+    .hero-float-2{right:-10px;}
+    .products-grid{grid-template-columns:1fr;}
+    .ba-grid{grid-template-columns:1fr;}
+    .ba-showcase{grid-column:1;grid-template-columns:1fr auto 1fr;min-height:250px;}
+    .consult-inner{grid-template-columns:1fr;gap:3rem;}
+    .testi-grid{grid-template-columns:1fr;}
+    .insta-grid{grid-template-columns:repeat(3,1fr);}
+    .footer-grid{grid-template-columns:1fr;gap:2.5rem;}
+    .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="Beauty Reaction" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Beauty Reaction</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#consultation">Consultation</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#consultation" class="nav-cta">🌸 Free Skin Analysis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🌸 Premium Skincare — Pakistan</div>
+    <h1 class="hero-title">Your Skin<br>My <em>Reaction</em></h1>
+    <p class="hero-tagline">Stay Tuned With Beauty Reaction ✨</p>
+    <p class="hero-sub">Science-backed formulas crafted for South Asian skin. Targeted treatments that visibly transform your complexion in weeks.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-pink">Shop Now</a>
+      <a href="#consultation" class="btn-outline-pink">Get Skin Analysis</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <div class="hero-blob"></div>
+      <img src="serum.png" alt="Spotless Glow Serum" onerror="this.outerHTML='<div class=\'hero-img-placeholder\'><span class=\'big-icon\'>🌸</span><span>Spotless Glow Serum</span></div>'">
+    </div>
+    <div class="hero-float-1">
+      <div class="hf-num">2 Wks</div>
+      <div class="hf-label">Visible Results</div>
+    </div>
+    <div class="hero-float-2">
+      <div class="hf-num">100%</div>
+      <div class="hf-label">Skin Safe</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">🌸 Your Skin My Reaction</div>
+    <div class="marquee-item">🌸 Spotless Glow Serum</div>
+    <div class="marquee-item">🌸 Spotless Glow Cleanser</div>
+    <div class="marquee-item">🌸 Stay Tuned With Beauty Reaction</div>
+    <div class="marquee-item">🌸 Visible Results in 2 Weeks</div>
+    <div class="marquee-item">🌸 Free Skin Consultation</div>
+    <div class="marquee-item">🌸 Your Skin My Reaction</div>
+    <div class="marquee-item">🌸 Spotless Glow Serum</div>
+    <div class="marquee-item">🌸 Spotless Glow Cleanser</div>
+    <div class="marquee-item">🌸 Stay Tuned With Beauty Reaction</div>
+    <div class="marquee-item">🌸 Visible Results in 2 Weeks</div>
+    <div class="marquee-item">🌸 Free Skin Consultation</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-label">🌸 Our Collection</div>
+  <h2 class="section-title">The <em>Spotless Glow</em> Duo</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="serum.png" alt="Spotless Glow Serum" onerror="this.parentElement.innerHTML='<div class=\'product-img-placeholder\'><span class=\'big-icon\'>💧</span><span>Serum Image</span></div>'">
+      </div>
+      <div class="product-tag">🌸 Bestseller</div>
+      <h3 class="product-name">Spotless Glow Serum</h3>
+      <p class="product-desc">A concentrated brightening serum that fades dark spots, evens skin tone, and restores your natural radiance. Enriched with advanced actives for visible results in just 14 days.</p>
+      <div class="product-footer">
+        <div class="product-price">999 <sub>PKR</sub></div>
+        <a href="https://wa.me/923278137037?text=Hi! I want to order Spotless Glow Serum 🌸" target="_blank" class="btn-buy">Order Now</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="cleanser.png" alt="Spotless Glow Cleanser" onerror="this.parentElement.innerHTML='<div class=\'product-img-placeholder\'><span class=\'big-icon\'>🧴</span><span>Cleanser Image</span></div>'">
+      </div>
+      <div class="product-tag">🌸 Daily Essential</div>
+      <h3 class="product-name">Spotless Glow Cleanser</h3>
+      <p class="product-desc">A gentle yet deep-cleansing formula that removes impurities and excess oil without stripping your skin's natural barrier. Perfect for all skin types, every single day.</p>
+      <div class="product-footer">
+        <div class="product-price">999 <sub>PKR</sub></div>
+        <a href="https://wa.me/923278137037?text=Hi! I want to order Spotless Glow Cleanser 🌸" target="_blank" class="btn-buy">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER — Real Images -->
+<section class="before-after" id="results">
+  <div class="section-label">🌸 Real Results</div>
+  <h2 class="section-title">Transformations That <em>Speak</em> For Themselves</h2>
+
+  <div class="ba-grid">
+
+    <!-- Main Big Before/After Comparison -->
+    <div class="ba-showcase">
+      <div class="ba-side before-side">
+        <div class="ba-side-label">Before</div>
+        <img src="before1.png" alt="Before Beauty Reaction" onerror="this.outerHTML='<div class=\'ba-img-placeholder\'><span class=\'ph-icon\'>😔</span><span>Before Photo</span></div>'">
+      </div>
+      <div class="ba-center-divider">
+        <div class="ba-vs">vs</div>
+        <div class="ba-arrow-circle">→</div>
+        <div class="ba-vs">✨</div>
+      </div>
+      <div class="ba-side after-side">
+        <div class="ba-side-label">After 🌸</div>
+        <img src="after1.png" alt="After Beauty Reaction" onerror="this.outerHTML='<div class=\'ba-img-placeholder\'><span class=\'ph-icon\'>✨</span><span>After Photo</span></div>'">
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="ba-stat-card">
+      <div class="ba-stat-icon">💧</div>
+      <div class="ba-stat-week">Week 2</div>
+      <div class="ba-stat-name">Dark Spots Faded</div>
+      <div class="ba-stat-result">Spotless Glow Serum daily</div>
+    </div>
+
+    <div class="ba-stat-card">
+      <div class="ba-stat-icon">🌟</div>
+      <div class="ba-stat-week">Week 3</div>
+      <div class="ba-stat-name">Brighter Complexion</div>
+      <div class="ba-stat-result">Serum + Cleanser routine</div>
+    </div>
+
+    <div class="ba-stat-card">
+      <div class="ba-stat-icon">✨</div>
+      <div class="ba-stat-week">Week 4</div>
+      <div class="ba-stat-name">Spotless Glow</div>
+      <div class="ba-stat-result">Full Beauty Reaction routine</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consultation" id="consultation">
+  <div class="consult-inner">
+    <div>
+      <div class="section-label">🌸 Personalized Care</div>
+      <h2 class="section-title">Your Skin,<br>Your <em>Custom</em> Solution</h2>
+      <p style="font-size:0.76rem;color:var(--text-muted);line-height:1.9;max-width:380px;margin-bottom:1.5rem;">Every skin is unique. Tell us your concerns and we'll recommend the perfect product routine tailored specifically for you — no guessing, just results.</p>
+      <ul class="consult-features">
+        <li class="consult-feature">
+          <span class="cf-icon">🔬</span>
+          <div class="cf-text">
+            <h4>Expert Skin Analysis</h4>
+            <p>Our specialists analyze your skin type, concerns, and lifestyle for the most effective recommendations.</p>
+          </div>
+        </li>
+        <li class="consult-feature">
+          <span class="cf-icon">💊</span>
+          <div class="cf-text">
+            <h4>Customized Product Plan</h4>
+            <p>Receive a personalized routine using our products, perfectly sequenced for your skin's needs.</p>
+          </div>
+        </li>
+        <li class="consult-feature">
+          <span class="cf-icon">📲</span>
+          <div class="cf-text">
+            <h4>Direct WhatsApp Consultation</h4>
+            <p>Connect instantly with our skin expert at absolutely no extra charge.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="consult-form">
+      <h3 class="form-title">Get Your Free Analysis ✨</h3>
+      <p class="form-subtitle">Fill in your details — we'll reach you on WhatsApp</p>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="c-name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp Number</label>
+        <input type="tel" id="c-phone" placeholder="03XX XXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>Skin Type</label>
+        <select id="c-skin">
+          <option value="">Select your skin type</option>
+          <option>Oily Skin</option>
+          <option>Dry Skin</option>
+          <option>Combination Skin</option>
+          <option>Sensitive Skin</option>
+          <option>Normal Skin</option>
+          <option>I'm not sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Main Skin Concern</label>
+        <select id="c-concern">
+          <option value="">Select your concern</option>
+          <option>Dark Spots / Pigmentation</option>
+          <option>Acne / Pimples</option>
+          <option>Dullness / Uneven Tone</option>
+          <option>Oiliness / Large Pores</option>
+          <option>Dryness / Flakiness</option>
+          <option>Aging / Fine Lines</option>
+          <option>Dark Circles</option>
+          <option>Multiple Concerns</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us More (Optional)</label>
+        <textarea id="c-details" placeholder="Describe your skin concerns in detail..."></textarea>
+      </div>
+      <button class="consult-btn" onclick="sendConsultation()">
+        <span>💬</span> Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="section-label">🌸 Customer Love</div>
+  <h2 class="section-title">What Our <em>Girls</em> Are Saying</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Main ne kai products try kiye the dark spots k liye, lekin Beauty Reaction ka Serum ne 2 hafton mein jo kaam kiya woh kisi ne nahin kiya. Bilkul satisfied hoon!</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sana Malik</div>
+          <div class="testi-location">Lahore, Pakistan</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">The personal consultation was amazing! They understood my skin problems and suggested exactly the right routine. My skin is glowing now after just one month!</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Ayesha Noor</div>
+          <div class="testi-location">Karachi, Pakistan</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Cleanser itna gentle hai k sensitive skin pe bhi koi irritation nahi. Aur serum ne mere chehere ki raunaq wapas kar di. 100% recommend karti hoon! 🌸</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rimsha Khan</div>
+          <div class="testi-location">Islamabad, Pakistan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Beauty Reaction</div>
+      <div class="footer-brand-tagline">Your Skin My Reaction — Stay Tuned With Beauty Reaction</div>
+      <p class="footer-desc">Premium skincare crafted for South Asian skin. Science-backed formulas for visible, lasting results you can trust.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#products">Our Products</a></li>
+        <li><a href="#results">Before & After</a></li>
+        <li><a href="#consultation">Free Consultation</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="contact-item">📞 <a href="tel:+923278137037">0327 8137037</a></div>
+      <div class="contact-item">💬 <a href="https://wa.me/923278137037" target="_blank">WhatsApp Us</a></div>
+      <div class="contact-item" style="font-size:0.62rem;">✉️ <a href="/cdn-cgi/l/email-protection#1476717561606d66717577607d7b7a7b72727d777d7578547379757d783a777b79"><span class="__cf_email__" data-cfemail="bad8dfdbcfcec3c8dfdbd9ced3d5d4d5dcdcd3d9d3dbd6faddd7dbd3d694d9d5d7">[email&#160;protected]</span></a></div>
+      <div class="contact-item">📸 <a href="https://instagram.com/beautyreactionofficial" target="_blank">@beautyreactionofficial</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Beauty Reaction. All rights reserved. 🌸</div>
+    <div class="social-links">
+      <a href="https://wa.me/923278137037" target="_blank" class="social-link">💬</a>
+      <a href="https://instagram.com/beautyreactionofficial" target="_blank" class="social-link">📸</a>
+      <a href="/cdn-cgi/l/email-protection#aac8cfcbdfded3d8cfcbc9dec3c5c4c5ccccc3c9c3cbc6eacdc7cbc3c684c9c5c7" class="social-link">✉️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923278137037?text=Hi! I'm interested in Beauty Reaction products 🌸" target="_blank" class="wa-float">💬</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function sendConsultation() {
+    const name = document.getElementById('c-name').value.trim();
+    const phone = document.getElementById('c-phone').value.trim();
+    const skin = document.getElementById('c-skin').value;
+    const concern = document.getElementById('c-concern').value;
+    const details = document.getElementById('c-details').value.trim();
+    if (!name || !phone || !skin || !concern) { alert('Please fill in all required fields.'); return; }
+    const msg = `🌸 *Beauty Reaction – Skin Consultation*\n\n👤 *Name:* ${name}\n📱 *Phone:* ${phone}\n💧 *Skin Type:* ${skin}\n⚠️ *Concern:* ${concern}\n${details ? `📝 *Details:* ${details}\n` : ''}\nPlease suggest the best products for my skin. Thank you! 🌸`;
+    window.open(`https://wa.me/923278137037?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding = window.scrollY > 50 ? '0.8rem 4rem' : '1.2rem 4rem';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
